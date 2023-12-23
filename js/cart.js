@@ -1,35 +1,47 @@
 var cart = [];
 
 function addToCart(productId, productPrice) {
-  var name = $(`#titleProduct${productId}`).text();
   var qty = parseInt($(`#inputProduct${productId}`).val());
-  var tot = productPrice * qty;
-
-  var i = {
-    "productId": productId,
-    "productName": name,
-    "productPrice": productPrice,
-    "productQty": qty,
-    "productTotal": tot
+  if (qty === 0 || isNaN(qty) || qty < 0) {
+    alert("You need to add valid product quantity!!!");
+    $(`#inputProduct${productId}`).val('');
+  } else {
+    var name = $(`#titleProduct${productId}`).text();
+    var tot = productPrice * qty;
+    var i = {
+      "productId": productId,
+      "productName": name,
+      "productPrice": productPrice,
+      "productQty": qty,
+      "productTotal": tot
+    }
+    cart.push(i);
+    $(`#inputProduct${productId}`).val('');
+    loadCartItems();
+    updateCartTotal();
   }
-  cart.push(i);
-  loadCartItems();
-  updateCartTotal();
-  console.log(cart);
 }
 
-function updateCartTotal(val) {
+function updateCartTotal() {
+  var t = calculateCartTotal();
+  $("#floatBtnBadge").text(t.totalItems);
+  $("#lblTotalItems").text(t.totalItems);
+  $("#lblSubTotal").text(t.total);
+
+  $("#lblNetTotal").text(t.netTotal);
+}
+
+function calculateCartTotal() {
+  var tax = $("#lblTax").text();
+
   var total = 0;
   var totalItems = 0;
   cart.forEach(e => {
     totalItems += parseInt(e.productQty);
     total += e.productTotal;
   });
-  $("#lblTotalItems").text(totalItems);
-  $("#lblSubTotal").text(total);
-  var tax = $("#lblTax").text();
   var netTot = Math.trunc(total + (total * (parseInt(tax) / 100)));
-  $("#lblNetTotal").text(netTot);
+  return { "total": total, "totalItems": totalItems, "netTotal": netTot };
 }
 
 function removeCartItem(productId) {

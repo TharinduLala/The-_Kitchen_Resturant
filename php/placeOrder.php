@@ -1,14 +1,12 @@
 <?php
 include 'global.php';
-
-
 if (isset($_POST)) {
     $conn = mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);
     $data = file_get_contents("php://input");
     $orderValue = json_decode($data);
     $details = json_decode($orderValue->orderDetails);
 
-    $oId = 1;
+    $oId = $orderValue->orderId;
     $cusName = $orderValue->customerName;
     $tot = $orderValue->totalValue;
     $date = $orderValue->orderDate;
@@ -23,10 +21,9 @@ if (isset($_POST)) {
         $productName = $i->productName;
         $productPrice = $i->productPrice;
         $productQty = $i->productQty;
-        $productTotal = $i->productId;
-        $sql = "INSERT INTO orderdetails (orderId,productId,unitPrice,qty,total) VALUES ('{$oId}','{$productId}','{$productPrice}','{$productQty}','{$productTotal}')";
+        $productTotal = $i->productTotal;
+        $sql = "INSERT INTO orderDetails (orderId,productId,productName,unitPrice,qty,total) VALUES ('{$oId}','{$productId}','{$productName}','{$productPrice}','{$productQty}','{$productTotal}')";
         $stmt = mysqli_query($conn, $sql);
-
-        echo "Order Added Successfully";
     }
+    echo "Order Added Successfully";
 }

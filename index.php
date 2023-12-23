@@ -359,7 +359,7 @@
 
     <!-- floating button for open cart -->
     <button class="float" data-bs-toggle="offcanvas" href="#cartOffcanvas" aria-controls="cartOffcanvas">
-        <i class="bi bi-cart mt-5"></i>
+        <i class="bi bi-cart mt-5"></i><span id="floatBtnBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
     </button>
 
     <!-- Offcanvas for cart -->
