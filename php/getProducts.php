@@ -1,5 +1,8 @@
+
 <?php
-$con = mysqli_connect("localhost", "root", "1234", "the_kitchen");
+include 'global.php';
+
+$con = mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);
 $result = mysqli_query($con, "SELECT * FROM `products`");
 $data = array();
 while ($row = mysqli_fetch_assoc($result)) {

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <title>The Kitchen Restaurant</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: "Raleway", sans-serif;
         }
@@ -50,6 +54,7 @@
                 <img src="assets/img/logo2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top me-2" />
                 The Kitchen Restaurant
             </h3>
+            <button onclick="gotoOrderSection();" type="button" class="btn btn-outline-light btn-sm">Order Now!</button>
         </nav>
     </header>
 
@@ -62,34 +67,50 @@
             <div class="carousel-inner">
                 <!-- Slider Item -->
                 <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="assets/img/slider-pasta.jpg" class="d-block w-100 h-75" alt="..." />
-                    <div class="carousel-caption d-none d-md-block">
-                        <p class="fs-1 fw-bolder text-body-emphasis">
+                    <img src="assets/img/slider-pasta.jpg" class="d-block w-100 " alt="..." />
+                    <div class="carousel-caption d-block">
+                        <p class="fs-6 fw-bolder text-body-emphasis d-block d-md-none">
                             Welcome to 'THE KITCHEN'
                         </p>
-                        <p class="fs-2 fst-italic fst-italic text-body-emphasis">
+                        <p class="fs-6 fst-italic fst-italic text-body-emphasis d-block d-md-none">
+                            #Tasty #Delicious #Savoury
+                        </p>
+                        <p class="fs-1 fw-bolder text-body-emphasis d-none d-md-block">
+                            Welcome to 'THE KITCHEN'
+                        </p>
+                        <p class="fs-2 fst-italic fst-italic text-body-emphasis d-none d-md-block">
                             #Tasty #Delicious #Savoury
                         </p>
                     </div>
                 </div>
                 <!-- Slider Item -->
                 <div class="carousel-item" data-bs-interval="4000">
-                    <img src="assets/img/slider-dessert.jpg" class="d-block w-100 h-75" alt="..." />
-                    <div class="carousel-caption d-none d-md-block">
-                        <p class="fs-1 fw-bolder text-body-emphasis">
+                    <img src="assets/img/slider-dessert.jpg" class="d-block w-100" alt="..." />
+                    <div class="carousel-caption d-block">
+                        <p class="fs-6 fw-bolder text-body-emphasis d-block d-md-none">
                             Delicious Desserts
                         </p>
-                        <p class="fs-2 fst-italic fst-italic text-body-emphasis">
+                        <p class="fs-6 fst-italic fst-italic text-body-emphasis d-block d-md-none">
+                            Order it online now!
+                        </p>
+                        <p class="fs-1 fw-bolder text-body-emphasis d-none d-md-block">
+                            Delicious Desserts
+                        </p>
+                        <p class="fs-2 fst-italic fst-italic text-body-emphasis d-none d-md-block">
                             Order it online now!
                         </p>
                     </div>
                 </div>
                 <!-- Slider Item -->
                 <div class="carousel-item" data-bs-interval="4000">
-                    <img src="assets/img/slider-burger.jpg" class="d-block w-100 h-75" alt="..." />
-                    <div class="carousel-caption d-none d-md-block">
-                        <p class="fs-1 fw-bolder text-body-emphasis">Free Burger</p>
-                        <p class="fs-2 fst-italic fst-italic text-body-emphasis">
+                    <img src="assets/img/slider-burger.jpg" class="d-block w-100 " alt="..." />
+                    <div class="carousel-caption d-block">
+                        <p class="fs-6 fw-bolder text-body-emphasis d-block d-md-none">Free Burger</p>
+                        <p class="fs-6 fst-italic fst-italic text-body-emphasis d-block d-md-none">
+                            Get free burger from order higher than $30!
+                        </p>
+                        <p class="fs-1 fw-bolder text-body-emphasis d-none d-md-block">Free Burger</p>
+                        <p class="fs-2 fst-italic fst-italic text-body-emphasis d-none d-md-block">
                             Get free burger from order higher than $30!
                         </p>
                     </div>
@@ -98,8 +119,10 @@
         </div>
 
         <!-- About Us -->
-        <div class="position-relative container text-center p-0 mt-2 mb-2 bg-light w-100 d-md-block d-none">
-
+        <div class="position-relative container text-center p-0 mt-2 mb-2 bg-light w-100 ">
+            <p class="fs-1 fw-bolder text-body-emphasis text-center">
+                About Us
+            </p>
             <div class="row d-flex justify-content-evenly">
                 <div style="height: fit-content" class="col-8 col-lg-3 mt-2 me-lg-0 ms-lg-0 border rounded-3 border-3 border-dark">
                     <div class="card mb-1 mt-1 border-0 bg-light">
@@ -150,7 +173,10 @@
         </div>
 
         <!-- Product List -->
-        <div class="position-relative container p-0 mt-2 mb-2 bg-light w-100">
+        <div id="productSection" class="position-relative container p-0 mt-2 mb-2 bg-light w-100">
+            <p class="fs-1 fw-bolder text-body-emphasis text-center">
+                Order Now
+            </p>
             <ul class="list-group accordion bg-light" id="productsAccordion">
                 <!-- Burger Section -->
                 <li class="list-group-item accordion-item border-0 bg-light">
@@ -337,7 +363,7 @@
     </button>
 
     <!-- Offcanvas for cart -->
-    <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your Cart</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -346,16 +372,16 @@
             <div class="card h-100">
                 <div class="card-body overflow-y-scroll h-100">
                     <ul class="list-group list-group-flush" id="cartList">
-                        
+
                     </ul>
                 </div>
 
                 <div class="card-body">
-                <h6 class="offcanvas-title">Total items : <span id="lblTotalItems">0</span></h6>
-                <h6 class="offcanvas-title">Sub total : Rs.<span id="lblSubTotal">0</span>.00</h6>
-                <h6 class="offcanvas-title">Tax : <span id="lblTax">2</span>%</h6>
-                <h5 class="offcanvas-title">Net total : Rs.<span id="lblNetTotal">0</span>.00</h5>
-                    <button id="checkOut" type="button" class="btn btn-dark w-100 mt-2">
+                    <h6 class="offcanvas-title">Total items : <span id="lblTotalItems">0</span></h6>
+                    <h6 class="offcanvas-title">Sub total : Rs.<span id="lblSubTotal">0</span>.00</h6>
+                    <h6 class="offcanvas-title">Tax : <span id="lblTax">2</span>%</h6>
+                    <h5 class="offcanvas-title">Net total : Rs.<span id="lblNetTotal">0</span>.00</h5>
+                    <button onclick="placeOrder();" id="checkOut" type="button" class="btn btn-dark w-100 mt-2">
                         GO TO CHECKOUT
                     </button>
                 </div>
@@ -366,6 +392,8 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/jquery/jquery-3.7.1.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/placeOrder.js"></script>
 
 </body>
 
