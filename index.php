@@ -345,20 +345,17 @@
         <div class="offcanvas-body">
             <div class="card h-100">
                 <div class="card-body overflow-y-scroll h-100">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A list item
-                            <span class="badge"><button type="button" class="btn-close"></button></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A list item
-                            <span class="badge"><button type="button" class="btn-close"></button></span>
-                        </li>
+                    <ul class="list-group list-group-flush" id="cartList">
+                        
                     </ul>
                 </div>
 
                 <div class="card-body">
-                    <button id="checkOut" type="button" class="btn btn-dark w-100">
+                <h6 class="offcanvas-title">Total items : <span id="lblTotalItems">0</span></h6>
+                <h6 class="offcanvas-title">Sub total : Rs.<span id="lblSubTotal">0</span>.00</h6>
+                <h6 class="offcanvas-title">Tax : <span id="lblTax">2</span>%</h6>
+                <h5 class="offcanvas-title">Net total : Rs.<span id="lblNetTotal">0</span>.00</h5>
+                    <button id="checkOut" type="button" class="btn btn-dark w-100 mt-2">
                         GO TO CHECKOUT
                     </button>
                 </div>
