@@ -1,20 +1,29 @@
 function placeOrder() {
     var calculate = calculateCartTotal();
-    if (calculate.totalItems === 0) {
-        alert("Your Cart is Empty..!");
+
+    var today = new Date();
+    var car = JSON.stringify(cart)
+    var s = today.getDate() + "" + (today.getMonth()+1) + "" + today.getFullYear() + "" + today.getHours() + "" + today.getMinutes() + "" + today.getSeconds();
+    var oderId = "OD" + cart.length + "" + s;
+    var total = calculate.netTotal;
+    var orderDate = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
+
+
+    var cusName = $("#customerName").val();
+    var address = $("#deliveryAddress").val();
+    var contact = $("#contactNumber").val();
+
+    if (cusName == '' || address == '' || contact == '') {
+        alert("Please fill all fields");
     } else {
-        var today = new Date();
-        var car = JSON.stringify(cart)
-        var s = today.getDate() + "" + today.getMonth() + "" + today.getFullYear() + "" + today.getHours() + "" + today.getMinutes() + "" + today.getSeconds();
-        var oderId = "OD" + cart.length + "" + s;
-        var total = calculate.netTotal;
+
         var va = {
             "orderId": oderId,
-            "customerName": "Kamal",
+            "customerName": cusName,
             "totalValue": total,
-            "orderDate": "2023-12-23",
-            "customerTel": "0715463515",
-            "deliveryAddress": "Panadura",
+            "orderDate": orderDate,
+            "customerTel": contact,
+            "deliveryAddress": address,
             "orderDetails": car
         };
 
@@ -31,6 +40,12 @@ function placeOrder() {
             alert(data);
             cart = [];
             $("#cartList").empty();
+            $("#customerName").val("");
+            $("#deliveryAddress").val("");
+            $("#contactNumber").val("");
+            $("#modalCloseBtn").trigger('click');
+            $("#offcanvasClose").trigger('click');
+            
             updateCartTotal();
         });
     }

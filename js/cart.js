@@ -3,22 +3,38 @@ var cart = [];
 function addToCart(productId, productPrice) {
 
   var qty = parseInt($(`#inputProduct${productId}`).val());
+
   if (qty === 0 || isNaN(qty) || qty < 0) {
     alert("You need to add valid product quantity!!!");
     $(`#inputProduct${productId}`).val('');
   }
 
-  var name = $(`#titleProduct${productId}`).text();
-  var tot = productPrice * qty;
-  var i = {
-    "productId": productId,
-    "productName": name,
-    "productPrice": productPrice,
-    "productQty": qty,
-    "productTotal": tot
+  var e = itemIsExists(productId);
+
+  if (e.exist) {
+
+    cart[e.index].productQty += qty;
+    cart[e.index].productTotal=(cart[e.index].productQty)*cart[e.index].productPrice;
+  } else {
+
+    var name = $(`#titleProduct${productId}`).text();
+    var tot = productPrice * qty;
+
+    var i = {
+      "productId": productId,
+      "productName": name,
+      "productPrice": productPrice,
+      "productQty": qty,
+      "productTotal": tot
+    }
+
+    cart.push(i);
+
   }
-  cart.push(i);
+
   $(`#inputProduct${productId}`).val('');
+
+  $("#checkOutBtn").removeAttr('disabled');
   loadCartItems();
   updateCartTotal();
   console.log(cart);
@@ -31,13 +47,11 @@ function updateCartTotal() {
   $("#floatBtnBadge").text(t.totalItems);
   $("#lblTotalItems").text(t.totalItems);
   $("#lblSubTotal").text(t.total);
-
   $("#lblNetTotal").text(t.netTotal);
 }
 
 function calculateCartTotal() {
   var tax = $("#lblTax").text();
-
   var total = 0;
   var totalItems = 0;
   cart.forEach(e => {
@@ -56,6 +70,9 @@ function removeCartItem(productId) {
     }
   });
   console.log(cart);
+  if(cart.length==0){
+    $("#checkOutBtn").attr('disabled', 'disabled');
+  }
   loadCartItems();
   updateCartTotal();
 }
@@ -78,5 +95,10 @@ function loadCartItems() {
 
 
 function itemIsExists(pId) {
-
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].productId == pId) {
+      return { "exist": true, "index": i };
+    }
+  }
+  return { "exist": false, "index": null };
 }

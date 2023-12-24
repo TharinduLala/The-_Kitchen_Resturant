@@ -123,6 +123,8 @@
             <p class="fs-1 fw-bolder text-body-emphasis text-center">
                 About Us
             </p>
+            <p>Welcome to THE KITCHEN RESTAURANT, a culinary oasis in the heart of Colombo. Our menu blends innovative flavors with time-honored recipes, crafted by passionate chefs using the finest locally sourced ingredients. Whether you're a connoisseur or an adventurous food enthusiast, our diverse offerings promise a symphony of taste.</p>
+            <p>At THE KITCHEN RESTAURANT, we not only offer exceptional cuisine but also provide a warm and inviting ambiance. Our commitment to outstanding service ensures every visit is a seamless and enjoyable experience. Join us for an unforgettable dining journey where passion, flavor, and hospitality converge, creating moments worth savoring.</p>
             <div class="row d-flex justify-content-evenly">
                 <div style="height: fit-content" class="col-8 col-lg-3 mt-2 me-lg-0 ms-lg-0 border rounded-3 border-3 border-dark">
                     <div class="card mb-1 mt-1 border-0 bg-light">
@@ -366,7 +368,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your Cart</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button id="offcanvasClose" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <div class="card h-100">
@@ -381,9 +383,39 @@
                     <h6 class="offcanvas-title">Sub total : Rs.<span id="lblSubTotal">0</span>.00</h6>
                     <h6 class="offcanvas-title">Tax : <span id="lblTax">2</span>%</h6>
                     <h5 class="offcanvas-title">Net total : Rs.<span id="lblNetTotal">0</span>.00</h5>
-                    <button onclick="placeOrder();" id="checkOut" type="button" class="btn btn-dark w-100 mt-2">
+                    <button disabled id="checkOutBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="button" class="btn btn-dark w-100 mt-2">
                         GO TO CHECKOUT
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Place Order</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Customer Name</span>
+                        <input id="customerName" type="text" class="form-control" placeholder="Customer Name" aria-label="Customer Name" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Contact Number</span>
+                        <input id="contactNumber" type="text" class="form-control" placeholder="Contact Number" aria-label="Contact Number" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Delivery Address</span>
+                        <input id="deliveryAddress" type="text" class="form-control" placeholder="Delivery Address" aria-label="Delivery Address" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="modalCloseBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button onclick="placeOrder();" type="button" class="btn btn-primary">Place Order</button>
                 </div>
             </div>
         </div>
