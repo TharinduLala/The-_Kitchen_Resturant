@@ -1,0 +1,8 @@
+Github Link : https://github.com/TharinduLala/The-_Kitchen_Resturant.git
+
+Instructions : 
+
+=> First you need to clone or download project.
+=> Then create database and import given SQL files(The-_Kitchen_Resturant-main\db).
+=> Make changes according to your database in The-_Kitchen_Resturant-main\php\global.php.
+=> Run the project using wamp server or xampp server.
